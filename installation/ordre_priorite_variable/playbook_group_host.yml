@@ -1,0 +1,7 @@
+---
+- name: 'Show Overridage : Group Variable < Host Variable'
+  hosts: web_servers
+  tasks: 
+    - name: show dns_serveur ip
+      debug:
+        msg: ' For hostanme {{ inventory_hostname }} {{ ansible_host  }}: dns_serveur ip is {{ dns_server }}'
