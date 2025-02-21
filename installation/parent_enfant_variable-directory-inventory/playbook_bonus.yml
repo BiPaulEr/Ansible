@@ -1,0 +1,28 @@
+---
+- name: Show Ansible variable definied for web_servers
+  hosts: web_servers
+  tasks: 
+    - name: Show variables on web_servers
+      debug:
+        var: groups["web_servers"]
+
+- name: Show Ansible variable definied for local_server
+  hosts: local_server
+  tasks: 
+    - name: Show variables on local_server
+      debug:
+        var: groups["local_server"]
+
+- name: Show Ansible variable definied for all_servers
+  hosts: all_servers
+  tasks: 
+    - name: Show variables on all_servers
+      debug:
+        var: groups["all_servers"]
+
+- name: Show Ansible variable definied for target01
+  hosts: target01
+  tasks: 
+    - name: Show all variables on target01
+      debug:
+        var: hostvars[inventory_hostname]

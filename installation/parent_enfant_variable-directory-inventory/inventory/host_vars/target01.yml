@@ -1,1 +1,2 @@
 variable_target01: I'm the variable available only for target01
+variable_all_servers: Target01 override the all servers variables
