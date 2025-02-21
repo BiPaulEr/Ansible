@@ -1,0 +1,25 @@
+---
+- name: Show Ansible variables
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    my_var: "This is a custom variable"
+    another_var: 42
+  tasks:
+    - name: Debug message for custom variable
+      debug:
+        msg: "The value of my_var is {{ my_var }}"
+
+    - name: Debug message for another variable
+      debug:
+        msg: "The value of another_var is {{ another_var }}"
+
+    - name: Show all available variables
+      debug:
+        var: hostvars
+
+    - name: Show inventory variables
+      debug:
+        var: inventory_hostname
+
