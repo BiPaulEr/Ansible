@@ -1,0 +1,11 @@
+
+port_serveur: 8080
+nom_service: "nginx"
+actif: true
+serveurs:
+  - web1
+  - web2
+base_de_donnees:
+  utilisateur: "admin"
+  mdp: "secret"
+

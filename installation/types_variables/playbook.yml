@@ -1,0 +1,24 @@
+- name: Show all types of variables
+  hosts: localhost
+  gather_facts : no
+  vars:
+    port_serveur: 8080
+    nom_service: "nginx"
+    actif: true
+    serveurs:
+      - web1
+      - web2
+    base_de_donnees:
+      utilisateur: "admin"
+      mdp: "secret"
+  tasks:
+    - name: Show port numerical, nom_service string, actif bool
+      debug:
+        msg: 'Le port est {{ port_serveur }}, le nom du service est {{ nom_service }}, est ce actif {{ actif }}'
+    - name: Show list
+      debug:
+        msg: 'la liste est {{ serveurs }} avec comme premier element {{ serveurs[0] }} et 2e {{ serveurs[1] }}'
+    - name: Show dict
+      debug:
+        msg: 'Le dict est {{ base_de_donnees }} avec utilisteur {{ base_de_donnees.utilisateur }} et mdp {{ base_de_donnees.mdp }}'
+
