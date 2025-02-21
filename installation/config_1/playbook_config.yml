@@ -1,0 +1,6 @@
+- name: Show Ansible Configuration Overrides
+  hosts: localhost
+  tasks:
+    - name: Debug message to illustrate Gathering as the first step
+      debug:
+        msg: "Is There a Gathering step between this msg ?"
