@@ -1,0 +1,50 @@
+---
+- name: Demonstrating the power of ansible-lint
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - ansible.builtin.debug:
+        msg: 'Hello World'
+    
+    - name: mode required for file
+      ansible.builtin.copy:
+        content: "This is a test"
+        dest: /tmp/test_file
+        owner: '{{ ansible_file }}'
+
+    - name: Using an undefined variable
+      ansible.builtin.copy:
+        content: "This is a test"
+        dest: /tmp/test_file
+        owner: '{{ ansible_file }}'
+        mode: '0644'
+
+    - name: Using a defined variable in inventory
+      ansible.builtin.copy:
+        content: "This is a test"
+        dest: /tmp/test_file
+        owner: '{{ ansible_user }}'
+        mode: '0644'
+
+    - name: Update MaxClients
+      ansible.builtin.lineinfile:
+        path: /tmp/httpd.conf
+        regexp: '^MaxClients 256'
+        line: 'MaxClients 512'
+
+    - name: Using deprecated module
+      ansible.builtin.shell: echo "This is deprecated"
+      ignore_errors: yes
+
+    - name: Install a package without sudo
+      ansible.builtin.apt:
+        name: curl
+        state: present
+
+    - name: Invalid indentation
+      ansible.builtin.copy:
+        content: "Example text"
+        dest: /tmp/example
+      mode: '0644'
+
+
