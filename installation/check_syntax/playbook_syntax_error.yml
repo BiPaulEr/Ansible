@@ -1,0 +1,11 @@
+---
+- name: Illustration des manipulations de fichiers
+  hosts: web_servers
+  gather_facts no
+  tasks:
+    - name: Delete KeepAline line
+      lineinfile:
+      path: /tmp/httpd.conf
+        regexp: '^KeepAlive'
+        state: absent
+        backup: yes   
