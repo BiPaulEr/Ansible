@@ -1,0 +1,15 @@
+---
+- name: Use_loop
+  hosts: web_servers
+  gather_facts: false
+  vars:
+    packages:
+      -  nginx
+      -  mysql
+      -  apache
+
+  tasks:
+    - name: Show packages name
+      debug:
+        var: item
+      loop: '{{ packages }}'

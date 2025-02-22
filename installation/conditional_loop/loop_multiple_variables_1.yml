@@ -1,0 +1,18 @@
+---
+- name: Use_loop
+  hosts: web_servers
+  gather_facts: false
+  vars:
+    packages:
+      - name: nginx
+        required: True
+      - name: mysql
+        required: True
+      - name: apache
+        required: False
+
+  tasks:
+    - name: Show packages name if required
+      debug:
+        msg: '{{ item.name }} is required : {{ item.required }}'
+      loop: '{{ packages }}'
