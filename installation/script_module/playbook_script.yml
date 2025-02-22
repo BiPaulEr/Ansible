@@ -1,0 +1,24 @@
+---
+- name: Run script on remote ab_servers
+  hosts: web_servers
+  gather_facts: false
+  tasks:
+    - name: Execute Script
+      script: local_script.sh
+      changed_when: false
+      register: output
+
+    - name: Display
+      debug:
+        var: output.stdout
+
+    - name: Execute Script in tmp directory
+      script: 
+        cmd: local_script.sh
+        chdir: /tmp
+      changed_when: false
+      register: output_tmp
+
+    - name: Display
+      debug:
+        var: output_tmp.stdout
