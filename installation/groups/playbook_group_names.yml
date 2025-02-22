@@ -1,0 +1,7 @@
+---
+- name: 'Show group_names'
+  hosts: all 
+  tasks: 
+    - name: Show group_names
+      debug:
+        var: group_names 

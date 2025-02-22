@@ -7,11 +7,3 @@ target02
 
 [local_server]
 localhost
-
-[europe:children]
-web_servers
-local_server
-
-[usa]
-target01
-localhost

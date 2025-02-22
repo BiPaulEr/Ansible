@@ -9,3 +9,6 @@
       debug: 
         var: groups['local_server']
           
+    - name: Show groups
+      debug:
+        var: groups
