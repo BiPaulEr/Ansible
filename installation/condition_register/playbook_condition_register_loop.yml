@@ -1,0 +1,20 @@
+---
+- name: Check if web services are accessibles at specifit port
+  hosts: web_servers
+  gather_facts: false
+  vars:
+    target_port:
+      -  '80'
+      -  '8080'
+  tasks:
+    - name: curl at port
+      command: 'curl -s -o /dev/null http://localhost:{{ item }}'
+      loop: '{{ target_port }}'
+      register: curl_results
+      failed_when: false 
+
+    - name: display port not working
+      debug:
+        msg: 'Port {{ item.item }} returned {{ item.rc }}'
+      loop: '{{ curl_results.results }}'
+      when: item.rc != 0

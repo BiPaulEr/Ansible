@@ -1,0 +1,24 @@
+---
+- name: Check if web services are accessibles at specifit port
+  hosts: web_servers
+  gather_facts: false
+  tasks:
+    - name: curl at port 80
+      command: 'curl -s -o /dev/null http://localhost:80'
+      register: curl_80
+      failed_when: false 
+
+    - name: curl at port 8080
+      command: 'curl -s -o /dev/null http://localhost:8080'
+      register: curl_8080
+      failed_when: false 
+
+    - name: display port 80
+      debug:
+        msg: 'Port 80 returned {{ curl_80.rc }}'
+      when: curl_80.rc != 0
+    
+    - name: display port 8080
+      debug:
+        msg: 'Port 8080 returned {{ curl_8080.rc }}'
+      when: curl_8080.rc != 0
