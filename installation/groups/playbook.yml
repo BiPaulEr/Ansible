@@ -1,0 +1,11 @@
+---
+- name: 'Show groups'
+  hosts: localhost
+  tasks: 
+    - name: Show groups web_servers
+      debug:
+        var: groups['web_servers']
+    - name: Show groups for local_server
+      debug: 
+        var: groups['local_server']
+          
