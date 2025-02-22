@@ -1,0 +1,16 @@
+---
+- name: Show idempotence
+  hosts: web_servers
+  gather_facts: no
+  #become: true
+  tasks:
+    - name: Get user
+      command: id
+      register: result
+    - name: Display user
+      debug:
+        var: result.stdout
+    - name: Install git
+      yum:
+        name: git
+        state: present
