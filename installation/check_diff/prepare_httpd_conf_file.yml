@@ -1,0 +1,13 @@
+- name: Illustration des manipulations de fichiers
+  hosts: web_servers
+  gather_facts: no
+  tasks:
+    - name: Copier le fichier httpd.conf local vers le serveur distant
+      copy:
+        src: local_httpd.conf  # Remplacez ce chemin par le chemin local
+        dest: /tmp/httpd.conf
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        mode: '0644'
+        backup: yes
+

@@ -1,0 +1,10 @@
+---
+- name: Illustration des manipulations de fichiers
+  hosts: web_servers
+  gather_facts: no
+  tasks:
+    - name: Replace only MaxClients 256 par MaxClients 999
+      replace:
+        path: /tmp/httpd.conf
+        regexp: '^MaxClients\s+\d+'
+        replace: 'MaxClients 999'   

@@ -1,0 +1,22 @@
+---
+- name: Illustration des manipulations de fichiers
+  hosts: web_servers
+  gather_facts: no
+  tasks:
+    - name: Ajouter une ligne à la fin si elle n'existe pas
+      lineinfile:
+        path: /tmp/httpd.conf
+        line: 'Header always set X-Custom-Header "MyServer"'
+        insertafter: EOF
+
+    - name: Remplacer une ligne entière (`Timeout`)
+      lineinfile:
+        path: /tmp/httpd.conf
+        regexp: '^Timeout'
+        line: 'Timeout 200'
+
+    - name: Supprimer une ligne (`ServerSignature`)
+      lineinfile:
+        path: /tmp/httpd.conf
+        regexp: '^ServerSignature'
+        state: absent
