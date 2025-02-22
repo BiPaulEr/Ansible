@@ -1,0 +1,12 @@
+---
+- name: Use_loop
+  hosts: web_servers
+  gather_facts: false
+  vars_files:
+    - packages.yml
+  tasks:
+    - name: Show packages name if required
+      debug:
+        var: item.name
+      when: '{{ item.required }} == True'
+      loop: '{{ packages }}'
