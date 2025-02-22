@@ -1,0 +1,9 @@
+---
+- name: 'Show ansible_facts'
+  hosts: web_servers
+  #gather_facts: no
+  tasks: 
+    - name: show ansible_facts
+      debug:
+        var: ansible_facts 
+          
