@@ -1,0 +1,11 @@
+---
+- name: Ensure ssh service starton remote web_servers
+  hosts: web_servers
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Start SSh srevice
+      service:
+        name: sshd
+        state: started
+        enabled: true
