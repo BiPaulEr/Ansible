@@ -1,0 +1,21 @@
+---
+- name: Install nginx cross platform
+  hosts: web_servers
+  gather_facts: true
+  become: true
+  tasks:
+    - name: debug
+      debug:
+        var: ansible_facts.os_family
+
+    - name: Install Nginx On Debian
+      apt:
+        name: nginx
+        state: present
+      when: '"Debian" == ansible_facts.os_family'
+    
+    - name: Install Nginx On RedHat
+      yum:
+        name: nginx
+        state: present
+      when: '"RedHat" == ansible_facts.os_family'
