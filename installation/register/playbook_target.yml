@@ -1,0 +1,52 @@
+---
+- name: Show register dict and stdout
+  hosts: web_servers
+  tasks: 
+    - name: Read hostname from command
+      command: hostname
+      register: result_hostname
+
+    - name: Show register variable complee dictionnary
+      debug:
+        var: result_hostname
+    - name: Show stdout of register
+      debug:
+        var: result_hostname.stdout
+
+- name: Show register form
+  hosts: web_servers
+  tasks: 
+    - name: Read host
+      command: cat /etc/hosts
+      register: result_hosts
+
+    - name: Show register variable stdout
+      debug:
+        var: result_hosts
+    - name: Show stdout of register
+      debug:
+        var: result_hosts.stdout
+    - name: Show rc of register
+      debug:
+        var: result_hosts.rc
+
+- name: Show register when erreur command
+  hosts: web_servers
+  tasks: 
+    - name: erreur command
+      command: cat /doc/exist/pas
+      register: result_erreur
+      ignore_errors: no
+
+    - name: Show register stderr
+      debug:
+        var: result_erreur.stderr
+    - name: Show rc of register
+      debug:
+        var: result_erreur.rc
+- name: Last Tasks
+  hosts: web_servers
+  tasks: 
+    - name: Is this tasks executed ignore_errors
+      debug:
+        msg: 'It is executed ?'
