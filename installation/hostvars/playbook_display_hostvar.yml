@@ -1,0 +1,8 @@
+---
+- name: 'Show hostvars'
+  hosts: web_servers
+  tasks: 
+    - name: Show hostvars
+      debug:
+        var: hostvars 
+          
