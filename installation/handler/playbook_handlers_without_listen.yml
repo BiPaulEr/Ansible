@@ -1,0 +1,21 @@
+---
+- name: Example Playbook with listen to demonstrate multiple handler notifications
+  hosts: localhost
+  tasks:
+    - name: Create file1.txt
+      file:
+        path: /tmp/file1.txt
+        state: touch
+      notify:
+        - restart_service_1
+        - restart_service_2
+
+  handlers:
+    - name: restart_service_1
+      debug:
+        msg: "Service 1 has been restarted because file1.txt was created!"
+
+    - name: restart_service_2
+      debug:
+        msg: "Service 2 has been restarted because file2.txt was created!"
+

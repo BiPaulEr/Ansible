@@ -1,0 +1,22 @@
+---
+- name: Multiple tasks notifying the same handler
+  hosts: localhost
+  tasks:
+    - name: Create file1.txt
+      file:
+        path: /tmp/file1.txt
+        state: touch
+      notify:
+        - restart_service
+
+    - name: Create file2.txt
+      file:
+        path: /tmp/file2.txt
+        state: touch
+      notify:
+        - restart_service
+
+  handlers:
+    - name: restart_service
+      debug:
+        msg: "Restarting service because a file has been changed!"
