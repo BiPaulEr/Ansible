@@ -1,0 +1,10 @@
+---
+- name: 'Show Variable Scope dns_server is defined only for target02'
+  hosts: web_servers
+  tasks: 
+    - name: show dns server of target02 accessible on each host
+      debug:
+        msg:
+          - '{{ inventory_hostname }}'
+          - ' {{ hostvars["target02"].dns_server }}' 
+          
