@@ -1,0 +1,18 @@
+---
+- name: Playbook to test my_role
+  hosts: web_servers
+  gather_facts: false
+  roles:
+    - my_role
+
+- name: Playbbok to read content
+  hosts: web_servers
+  gather_facts: false
+  tasks:
+    - name: Read content file
+      slurp:
+        src: '/tmp/my_role_directory/my_file.txt'
+      register: file_content
+    - name: Display content 
+      debug:
+        var: file_content.content | b64decode

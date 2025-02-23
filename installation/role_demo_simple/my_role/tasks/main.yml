@@ -1,0 +1,12 @@
+---
+# tasks file for my_role
+- name: Create directory my_role_directory
+  file: 
+    path: '/tmp/my_role_directory'
+    state: directory
+    mode: '0755'
+- name: Copy the file in the role
+  copy:
+    src: my_file.txt
+    dest: '/tmp/my_role_directory'
+    mode: '0622'
