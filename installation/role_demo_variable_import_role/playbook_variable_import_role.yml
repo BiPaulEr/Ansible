@@ -1,0 +1,21 @@
+---
+- name: Playbook task variable from  my_role
+  hosts: web_servers
+  gather_facts: false
+  tasks:
+    - name: role defined in variable.yml
+      import_role: 
+        name: my_role 
+        tasks_from: variable.yml
+
+- name: Playbook task variable and override default from my_role
+  hosts: web_servers
+  gather_facts: false
+  tasks:
+    - name: role definied in vraiable.yml with override varaible
+      import_role: 
+        name : my_role 
+        tasks_from: variable.yml
+      vars:
+        my_default_variable: 'defined in playbook'
+        my_var_variable: 'defined in playbook'

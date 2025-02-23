@@ -1,0 +1,12 @@
+---
+- name: Confirm variable.yml is running
+  debug:
+    msg: "Executing variable.yml from my_role!"
+
+- name: Show default variable
+  debug:
+    var: my_default_variable
+    
+- name: Show var variable
+  debug:
+    var: my_var_variable    

@@ -1,0 +1,3 @@
+---
+# defaults file for my_rol
+my_var_variable: "defined in vars folder in my_role"
