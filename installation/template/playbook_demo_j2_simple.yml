@@ -1,0 +1,21 @@
+---
+- name: Demonstrate Jinja2 yemplating simple
+  hosts: web_servers
+  gather_facts: yes
+  tasks:
+    - name: Show a simple Jinja2 variable
+      debug:
+        msg: "Hello, my hostname is {{ ansible_hostname }} and my OS is {{ ansible_distribution }}"
+
+    - name: Use a Jinja2 loop
+      debug:
+        msg: "{{ item }}"
+      loop:
+        - "Item 1"
+        - "Item 2"
+        - "Item 3"
+
+    - name: Jinja2 conditional example
+      debug:
+        msg: "This is a Linux system"
+      when: ansible_system == "Linux"

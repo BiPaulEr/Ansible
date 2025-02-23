@@ -1,0 +1,32 @@
+---
+- name: Demonstrate Ansible template module
+  hosts: web_servers
+  become: true
+  vars:
+    app_name: "MyWebApp"
+    env: "production"
+    max_connections: 100
+
+  tasks:
+    - name: Ensure the configuration directory exists
+      file:
+        path: /tmp/myapp
+        state: directory
+        mode: '0755'
+
+    - name: Deploy the application config file using a Jinja2 template
+      template:
+        src: templates/app.conf.j2
+        dest: /tmp/myapp/app.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Display generated config file content
+      command: cat /tmp/myapp/app.conf
+      register: config_output
+
+    - name: Show the generated config file
+      debug:
+        msg: "{{ config_output.stdout_lines }}"
+
