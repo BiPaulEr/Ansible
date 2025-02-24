@@ -1,0 +1,7 @@
+- name: Test Lookup Plugin - Dad Joke
+  hosts: localhost
+  tasks:
+    - name: Récupérer une blague
+      debug:
+        msg: "Blague du jour : {{ lookup('dad_joke') }}"
+
