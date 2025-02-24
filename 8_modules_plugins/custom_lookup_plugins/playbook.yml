@@ -1,5 +1,6 @@
 - name: Test Lookup Plugin - Dad Joke
   hosts: localhost
+  connection: local
   tasks:
     - name: Récupérer une blague
       debug:
