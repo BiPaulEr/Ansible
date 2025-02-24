@@ -1,0 +1,32 @@
+---
+- name: 'error handling'
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  become: true
+  tasks: 
+    - block:
+        - name: try apt on Centos
+          apt:
+            name: nginx
+            state: present
+      rescue:
+        - debug: 
+            msg: 
+              - "failed_task : {{ ansible_failed_task}}"
+              - "failed_result {{ ansible_failed_result }}"
+      always:
+        - debug: 
+            msg: Always is executed
+     
+    - block:
+        - name: command that works
+          command: uptime
+      rescue:
+        - debug: 
+            msg: 
+              - "failed_task : {{ ansible_failed_task}}"
+              - "failed_result {{ ansible_failed_result }}"
+      always:
+        - debug: 
+            msg: Always is executed 
