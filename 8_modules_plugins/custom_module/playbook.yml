@@ -1,0 +1,13 @@
+- name: Test du module personnalisé
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Exécuter mon module
+      my_module:
+        name: "Ansible"
+      register: result
+
+    - name: Afficher le résultat
+      debug:
+        msg: "{{ result.message }}"
+
