@@ -1,0 +1,20 @@
+---
+- name: Show Ansible target web_servers
+  hosts: web_servers
+  tasks: 
+    - name: Show inventory variables on web servers
+      debug:
+        var: inventory_hostname
+    - name: Show all available variables on web servers
+      debug:
+        var: hostvars[inventory_hostname]
+          
+- name: Show Ansible target local_servers
+  hosts: local_server
+  tasks: 
+    - name: Show inventory variables on local server
+      debug:
+        var: inventory_hostname
+    - name: Show all available variables on local server
+      debug:
+        var: hostvars[inventory_hostname]

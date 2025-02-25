@@ -1,0 +1,15 @@
+---
+- name: Show Ansible variables
+  hosts: [target01, target02]
+  vars:
+    my_var: "This is a custom variable"
+    another_var: 42
+  tasks: 
+    - name: Show inventory variables
+      debug:
+        var: inventory_hostname
+
+
+    - name: Show all available variables
+      debug:
+        var: hostvars[inventory_hostname]
