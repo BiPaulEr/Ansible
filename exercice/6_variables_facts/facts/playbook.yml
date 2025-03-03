@@ -1,0 +1,21 @@
+---
+- name: Show multiple ansible_facts for web_servers
+  hosts: web_servers
+  gather_facts: no 
+  tasks:
+    - name: Show OS family
+      debug:
+        msg: "{{ ************* }}"
+
+    - name: Show OS distribution
+      debug:
+        msg: "{{ ************* }}"
+
+    - name: Show OS version
+      debug:
+        msg: "{{ ************* }}"
+
+    - name: Show architecture
+      debug:
+        msg: "{{ ************* }}"
+
