@@ -1,0 +1,27 @@
+---
+- name: Show Ansible variable definied for web_servers
+  hosts: web_servers
+  tasks: 
+    - name: Show port on web_servers
+      debug:
+        var: http_port
+
+    - name: Show sh_port on web_servers
+      debug:
+        var: ssh_port
+
+- name: Show Ansible variable definied db_server
+  hosts: db_servers
+  tasks: 
+    - name: Show ssh_port on db_servers
+      debug:
+        var: ssh_port
+
+    - name: Show db_port on db_servers
+      debug:
+        var: db_port
+    
+    - name: Show db_user on db_servers
+      debug:
+        var: db_user    
+

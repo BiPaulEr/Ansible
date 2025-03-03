@@ -1,0 +1,17 @@
+web01 ansible_host=15.4.7.8 ansible_ssh_pass=web0121435
+web02 ansible_host=15.4.7.8 ansible_ssh_pass=web0353350
+
+db01 ansible_host=15.4.7.9 ansible_ssh_pass=db05793030
+db02 ansible_host=15.4.7.10 ansible_ssh_pass=db0239859
+
+[web_servers]
+web01
+web02
+
+[db_servers]
+db01
+db02
+
+[all_servers:children]
+web_servers
+db_server

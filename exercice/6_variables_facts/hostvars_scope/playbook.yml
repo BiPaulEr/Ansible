@@ -1,0 +1,21 @@
+---
+- name: 'Show variable dns_server for web_servers'
+  hosts: **********
+  tasks: 
+    - name: show name of web_servers
+      debug:
+        msg:
+          - '{{ inventory_hostname }}'
+    
+    - name: show dns_server variable for web_servers
+      debug:
+        var: **********
+
+- name: 'Show dns_server value from target02 avaible for all web_servers'
+  hosts: ************
+  tasks: 
+    - name: show dns server of target02 accessible on each host
+      debug:
+        msg:
+          - '{{ inventory_hostname }}'
+          - ' {{ hostvars[********].******* }}' 

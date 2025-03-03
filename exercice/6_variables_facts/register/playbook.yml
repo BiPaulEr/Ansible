@@ -1,0 +1,13 @@
+---
+- name: Read and dispplay /etc/hosts
+  hosts: web_servers
+  gather_facts: false
+  tasks:
+    - name: Read the /etc/hosts file
+      command: cat /etc/hosts
+      **********************
+
+    - name: Display file content
+      debug:
+        msg: "{{ ************** }}"
+
