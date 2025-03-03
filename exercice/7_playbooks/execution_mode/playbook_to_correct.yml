@@ -1,0 +1,28 @@
+---
+- name: Example Playbook with Issues
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Install nginx
+      ansible.builtin.yum:
+        name: nginx
+
+    - name: Display message
+      ansible.builtin.debug:
+        msg: "This is the {{ host_var }}"
+
+    - name: File copy task
+      ansible.builtin.copy:
+        content: "This is a test"
+        dest: /tmp/test_file
+        mode: '0644'
+
+    - name: Using shell to execute command
+      ansible.builtin.shell:
+        cmd: "echo 'Hello World'"
+
+    - name: Update system package
+      ansible.builtin.apt:
+        name: vim
+        state: latest
+

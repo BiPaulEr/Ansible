@@ -1,0 +1,17 @@
+---
+- name: Show success + changed
+  hosts: web_servers
+  gather_facts: no
+  *************
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+    - name: test httpd
+      command: httpd
+      register: result
+    - name: display result
+      debug:
+        var: ************
+

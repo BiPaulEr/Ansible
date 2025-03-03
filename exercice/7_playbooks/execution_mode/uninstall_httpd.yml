@@ -1,0 +1,13 @@
+---
+- name: Show success + changed
+  hosts: web_servers
+  gather_facts: no
+  become: true
+  tasks:
+    - name: desinstall httpd
+      yum:
+        name: httpd
+        state: absent
+    - name: test desinstallation
+      ignore_errors: yes
+      command: htttpd
