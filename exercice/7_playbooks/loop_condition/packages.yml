@@ -1,0 +1,9 @@
+packages:
+  - name: vim
+    required: True
+  - name: curl
+    required: True
+  - name: git
+    required: True
+  - name: apache2
+    required: False

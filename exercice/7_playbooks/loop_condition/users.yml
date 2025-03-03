@@ -1,0 +1,20 @@
+---
+- name: Display users and their groups
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    users:
+      - name: alice
+        group: admin
+      - name: bob
+        group: dev
+      - name: charlie
+        group: user
+
+  tasks:
+    - name: Show user name and group
+      debug:
+        msg: "User: {{*******}} | Group: {{*********}}"
+      *************
+

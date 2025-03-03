@@ -1,0 +1,23 @@
+---
+- name: install package 
+  hosts: web_servers
+  gather_facts: false
+  vars:
+    packages:
+      - name: vim
+        required: True
+      - name: curl
+        required: True 
+      - name: git
+        required: True
+      - name: apache2
+        required: False
+
+  tasks:
+    - name: Install package
+      yum:
+        name: ************
+        state: present
+      loop: *****************
+      when: ***************
+
