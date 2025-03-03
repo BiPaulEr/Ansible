@@ -1,0 +1,16 @@
+---
+- name: Show Ansible Name for web_servers
+  hosts: web_servers
+  tasks: 
+    - name: Show inventory hostname
+      debug:
+        var: inventory_hostname
+
+- name: Show Ansible Hostnname for local_server
+  hosts: local_server
+  connection: local
+  tasks: 
+    - name: Show inventory hostname
+      debug:
+        var: inventory_hostname
+
