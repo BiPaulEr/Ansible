@@ -1,0 +1,39 @@
+---
+- name: Installer et configurer Nginx sur les serveurs web
+  hosts: web_servers
+  become: ********  
+  gather_facts: ************
+
+  tasks:
+    - name: *************************
+      apt:
+        name: nginx
+        state: present 
+
+    - name: **************************
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: ***************************
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: '0644'
+
+    - name: ***************************
+      file:
+        path: "/var/www/html/website"
+        state: directory
+        mode: '0755'
+
+    - name: **************************
+      copy:
+        dest: "/var/www/html/website/index.html"
+        content: |
+          <html>
+            <head><title>Bienvenue sur le site</title></head>
+            <body><h1>Page d'accueil du site déployé via Ansible</h1></body>
+          </html>
+        mode: '0644'
