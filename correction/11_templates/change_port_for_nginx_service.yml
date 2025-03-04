@@ -1,0 +1,26 @@
+---
+- name: Open port 8888
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Start firewalld service
+      service:
+        name: firewalld
+        state: started
+
+    - name: Open port 8888 in firewalld
+      command: firewall-cmd --zone=public --add-port=8888/tcp --permanent
+
+    - name: Reload firewalld
+      command: firewall-cmd --reload
+
+    - name: Change Nginx to use root /var/www/html
+      lineinfile:
+        path: /etc/nginx/nginx.conf
+        regexp: '^\s+listen\s+80;'
+        line: 'listen 8888;'
+
+    - name: restart Nginx service
+      service:
+        name: nginx
+        state: restarted

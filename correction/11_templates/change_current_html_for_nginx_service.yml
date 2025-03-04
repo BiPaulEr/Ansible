@@ -1,0 +1,42 @@
+- name: Install and configure Nginx with Jinja2 template
+  hosts: web_servers
+  become: yes
+  vars:
+    server_name: "{{ ansible_hostname }}"
+
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Create web directory
+      file:
+        path: /var/www/html
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Deploy index.html using Jinja2 template
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Change Nginx to use root /var/www/html
+      lineinfile:
+        path: /etc/nginx/nginx.conf
+        regexp: '^\s+root\s+\S+;'
+        line: 'root /var/www/html;'
+        backup: yes
+
+    - name: Ensure Nginx is started
+      service:
+        name: nginx
+        state: restarted
+        enabled: yes
+
+

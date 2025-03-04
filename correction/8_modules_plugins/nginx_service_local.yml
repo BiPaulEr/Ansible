@@ -1,0 +1,19 @@
+---
+- name: Ensure Nginx can use port 80
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Allow Nginx to bind to port 80 in SELinux
+      command: semanage port -a -t http_port_t -p tcp 80
+      ignore_errors: yes  # If the rule already exists, we ignore the error
+
+    - name: Ensure Nginx is installed
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
