@@ -1,0 +1,16 @@
+---
+- name: Open port 80
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Start firewalld service
+      ************
+
+    - name: Open port 80 in firewalld
+      command: firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+    - name: Reload firewalld
+      command: firewall-cmd --reload
+
+    - name: restart Nginx service
+      ***********
