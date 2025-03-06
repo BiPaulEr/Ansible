@@ -14,4 +14,4 @@ db02
 
 [all_servers:children]
 web_servers
-db_server
+db_servers
