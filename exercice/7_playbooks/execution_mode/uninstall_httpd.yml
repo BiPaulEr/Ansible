@@ -10,4 +10,4 @@
         state: absent
     - name: test desinstallation
       ignore_errors: yes
-      command: htttpd
+      command: httpd
